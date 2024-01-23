@@ -3,8 +3,10 @@ const { check, validationResult } = require("express-validator");
 
 const router = express.Router();
 
-const { login } = require("../controllers/auth");
+const { login, register } = require("../controllers/auth");
 
 router.post("/login", login);
+
+router.post("/register", register);
 
 module.exports = router;

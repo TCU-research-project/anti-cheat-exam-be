@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
+console.log(DB_URL);
+
 mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,

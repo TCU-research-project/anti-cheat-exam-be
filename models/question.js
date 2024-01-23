@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const QuestionSchema = mongoose.Schema({
+const QuestionSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -9,6 +9,8 @@ const QuestionSchema = mongoose.Schema({
     type: Map,
     required: true,
   },
+}, {
+  collection: "Question"
 });
 
 const Question = mongoose.model("Question", QuestionSchema);

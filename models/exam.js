@@ -14,7 +14,7 @@ const examSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
-    maxlength: 16,
+    maxlength: 32,
   },
   startDate: {
     type: String,
@@ -41,6 +41,8 @@ const examSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
+}, {
+  collection: 'Exam'
 });
 
 const Exam = mongoose.model("Exam", examSchema);

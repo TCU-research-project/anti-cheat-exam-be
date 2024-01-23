@@ -1,10 +1,10 @@
 const { handleError, handleSuccess } = require("../utils/handleResponse");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 const expressJwt = require("express-jwt");
 const jwt = require("jsonwebtoken");
 const Student = require("../models/student");
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   const errors = validationResult(req);
   const { id, password } = req.body;
 
@@ -14,7 +14,7 @@ exports.login = (req, res) => {
     });
   }
 
-  Student.findById(id, (err, student) => {
+  Student.findOne({_id: id}, (err, student) => {
     if (err) return handleError(res, "Database error, please try again!", 400);
 
     if (!student) return handleError(res, "Student does not exist!", 400);
@@ -33,6 +33,20 @@ exports.login = (req, res) => {
   });
 };
 
+exports.register = async (req, res) => {
+  const errors = validationResult(req);
+  const { id, password, fname, lname } = req.body;
+  const newStudentDocument = new Student({
+    _id: id,
+    password,
+    fname,
+    lname
+  });
+  const newStudent = await newStudentDocument.save();
+
+  return res.json({newStudent});
+}
+
 exports.isSignedIn = expressJwt({
   secret: process.env.JWT_SECRET,
   userProperty: "auth",
@@ -43,7 +57,7 @@ exports.isAuthenticated = (req, res, next) => {
   // Consistent "id"
 
   const isAuthenticated =
-    req.student && req.auth && req.student._id === req.auth.id;
+    req.auth && req.auth.id;
 
   if (!isAuthenticated) {
     return handleError(res, "Access denied, please login!", 403);

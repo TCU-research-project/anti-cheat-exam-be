@@ -11,7 +11,9 @@ const submittedExamSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { strict: false }
+  { strict: false,
+    collection: "SubmittedExam",
+  }
 );
 
 const SubmittedExam = mongoose.model("SubmittedExam", studentSchema);

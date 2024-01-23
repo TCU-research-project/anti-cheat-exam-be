@@ -31,6 +31,8 @@ const studentSchema = new mongoose.Schema({
     type: Object,
     default: {},
   },
+}, {
+  collection: "Student"
 });
 
 studentSchema.methods = {

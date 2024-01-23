@@ -18,6 +18,8 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+}, {
+  collection: "Admin"
 });
 
 const Admin = mongoose.model("Admin", studentSchema);

@@ -11,6 +11,8 @@ const {
   createExam,
 } = require("../controllers/exam");
 
+const { assignExam } = require("../controllers/student")
+
 const { getStudentByID } = require("../controllers/student");
 
 router.param("studentId", getStudentByID);
@@ -27,5 +29,7 @@ router.get(
 
 // TODO: Add isAdmin middleware
 router.post("/createExam", isSignedIn, isAuthenticated, createExam);
+
+router.put("/assignExam", assignExam);
 
 module.exports = router;
