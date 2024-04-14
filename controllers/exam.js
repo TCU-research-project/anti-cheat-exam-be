@@ -36,7 +36,6 @@ exports.getExam = (req, res) => {
   if (!req.exam) return handleError(res, "Cannot get Exam, DB Error!");
 
   const exam = req.exam;
-  exam.answerKeys = undefined;
 
   return res.json(exam);
 };
