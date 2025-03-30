@@ -1,14 +1,14 @@
 {
   "name": "anti_cheat_exam_backend",
   "version": "1.0.0",
-  "description": "College Capstone Project Backend",
+  "description": "Anti-cheat Project Backend",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "Prathamesh Mutkure",
+  "author": "nhansunday",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
